@@ -381,6 +381,82 @@ $headers = @{"Authorization"="Bearer $token";"Content-Type"="application/json"}
 Invoke-RestMethod -Uri "http://localhost:8000/api/employees" -Method GET -Headers $headers
 ```
 
+## Postman Testing JSON Data
+
+### Tugas 5 - Update Employee
+
+**Method:** `PUT`
+**URL:** `http://localhost:8000/api/employees/01985730-af37-7363-b6db-fc20780ea9c2`
+**Headers:**
+
+```json
+{
+    "Authorization": "Bearer YOUR_TOKEN_HERE",
+    "Content-Type": "application/json"
+}
+```
+
+**Body (JSON):**
+
+```json
+{
+    "name": "Akbar Ryyan Saputra Updated",
+    "phone": "081234567800",
+    "division": "01985727-bcba-701c-acfb-303242380706",
+    "position": "Senior Backend Developer"
+}
+```
+
+### Tugas 6 - Delete Employee
+
+**Method:** `DELETE`
+**URL:** `http://localhost:8000/api/employees/01985730-af43-71fc-b437-87b751d8c7eb`
+**Headers:**
+
+```json
+{
+    "Authorization": "Bearer YOUR_TOKEN_HERE",
+    "Content-Type": "application/json"
+}
+```
+
+**Body:** `(empty - no body needed)`
+
+### Tugas 7 - Logout
+
+**Method:** `POST`
+**URL:** `http://localhost:8000/api/logout`
+**Headers:**
+
+```json
+{
+    "Authorization": "Bearer YOUR_TOKEN_HERE",
+    "Content-Type": "application/json"
+}
+```
+
+**Body:** `(empty - no body needed)`
+
+## Available Employee UUIDs for Testing
+
+From the current employees data:
+
+-   **Akbar Ryyan Saputra:** `01985730-af37-7363-b6db-fc20780ea9c2`
+-   **Siti Nurhaliza:** `01985730-af43-71fc-b437-87b751d8c7eb`
+-   **Budi Santoso:** `01985730-af47-70cb-bad5-eee487cec0d9`
+-   **Andi Setiawan:** `01985730-af4b-73b8-a2de-682d9846eccb`
+-   **Maya Sari:** `01985730-af4d-70bf-a756-dec2bffcd459`
+-   **Rizky Pratama:** `01985730-af50-701f-8c6e-0c96b72e25ec`
+
+## Available Division UUIDs for Testing
+
+-   **Mobile Apps:** `01985727-bcad-7106-ba9a-3ab018084914`
+-   **QA:** `01985727-bcb2-72af-bf8d-f000e09d5168`
+-   **Full Stack:** `01985727-bcb5-708c-a489-a59f2a4c897a`
+-   **Backend:** `01985727-bcb7-72cf-bfce-a57924fd4f9b`
+-   **Frontend:** `01985727-bcba-701c-acfb-303242380706`
+-   **UI/UX Designer:** `01985727-bcbd-7312-b3ea-e73b115d2226`
+
 ## Error Responses
 
 ### Authentication Required (401):
