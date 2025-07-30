@@ -27,7 +27,7 @@ class EmployeeController extends Controller
         $employeesData = $employees->getCollection()->map(function ($employee) {
             return [
                 'id' => $employee->id,
-                'image' => $employee->image ? url('storage/' . $employee->image) : null,
+                'image' => $employee->image,
                 'name' => $employee->name,
                 'phone' => $employee->phone,
                 'division' => [
@@ -61,10 +61,6 @@ class EmployeeController extends Controller
     {
         $validated = $request->validated();
 
-        if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('employees', 'public');
-        }
-
         Employee::create($validated);
 
         return response()->json([
@@ -77,14 +73,6 @@ class EmployeeController extends Controller
     {
         $validated = $request->validated();
 
-        if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($employee->image) {
-                Storage::disk('public')->delete($employee->image);
-            }
-            $validated['image'] = $request->file('image')->store('employees', 'public');
-        }
-
         $employee->update($validated);
 
         return response()->json([
@@ -95,11 +83,6 @@ class EmployeeController extends Controller
 
     public function destroy(Employee $employee)
     {
-        // Delete image if exists
-        if ($employee->image) {
-            Storage::disk('public')->delete($employee->image);
-        }
-
         $employee->delete();
 
         return response()->json([

@@ -170,11 +170,11 @@ GET /employees?name=John&division_id=uuid-divisi
 **Headers:**
 
 -   Authorization: Bearer {token}
--   Content-Type: multipart/form-data
+-   Content-Type: application/json
 
-**Request Body (Form Data):**
+**Request Body (JSON):**
 
--   `image`: File (optional) - Format: jpeg, png, jpg, gif. Max: 2MB
+-   `image`: String (optional) - URL gambar karyawan
 -   `name`: String (required) - Nama karyawan
 -   `phone`: String (required) - No telepon
 -   `division`: UUID (required) - UUID divisi
@@ -210,14 +210,11 @@ GET /employees?name=John&division_id=uuid-divisi
 **Headers:**
 
 -   Authorization: Bearer {token}
--   Content-Type: multipart/form-data
+-   Content-Type: application/json
 
-**Note:** Untuk Laravel, gunakan `_method=PUT` di form data jika menggunakan POST request dengan file upload.
+**Request Body (JSON):**
 
-**Request Body (Form Data):**
-
--   `_method`: PUT (jika menggunakan POST)
--   `image`: File (optional) - Format: jpeg, png, jpg, gif. Max: 2MB
+-   `image`: String (optional) - URL gambar karyawan
 -   `name`: String (required) - Nama karyawan
 -   `phone`: String (required) - No telepon
 -   `division`: UUID (required) - UUID divisi
@@ -383,6 +380,31 @@ Invoke-RestMethod -Uri "http://localhost:8000/api/employees" -Method GET -Header
 
 ## Postman Testing JSON Data
 
+### Tugas 4 - Create Employee
+
+**Method:** `POST`
+**URL:** `http://localhost:8000/api/employees`
+**Headers:**
+
+```json
+{
+    "Authorization": "Bearer YOUR_TOKEN_HERE",
+    "Content-Type": "application/json"
+}
+```
+
+**Body (JSON):**
+
+```json
+{
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150",
+    "name": "John Doe",
+    "phone": "081234567899",
+    "division": "01985727-bcb7-72cf-bfce-a57924fd4f9b",
+    "position": "Senior Developer"
+}
+```
+
 ### Tugas 5 - Update Employee
 
 **Method:** `PUT`
@@ -441,12 +463,11 @@ Invoke-RestMethod -Uri "http://localhost:8000/api/employees" -Method GET -Header
 
 From the current employees data:
 
--   **Akbar Ryyan Saputra:** `01985730-af37-7363-b6db-fc20780ea9c2`
--   **Siti Nurhaliza:** `01985730-af43-71fc-b437-87b751d8c7eb`
+-   **Akbar Ryyan Saputra Updated:** `01985730-af37-7363-b6db-fc20780ea9c2`
 -   **Budi Santoso:** `01985730-af47-70cb-bad5-eee487cec0d9`
 -   **Andi Setiawan:** `01985730-af4b-73b8-a2de-682d9846eccb`
 -   **Maya Sari:** `01985730-af4d-70bf-a756-dec2bffcd459`
--   **Rizky Pratama:** `01985730-af50-701f-8c6e-0c96b72e25ec`
+-   **John Doe (with image):** `019858ac-d829-7257-9817-dc9f73f3d109`
 
 ## Available Division UUIDs for Testing
 
